@@ -206,7 +206,7 @@ header nav .nav-sections ul > li > ul > li {
     content: '';
     display: inline-block;
     position: absolute;
-    top: 0.5em;
+    top: 0.3em;
     right: 2px;
     transform: rotate(135deg);
     width: 6px;
@@ -214,6 +214,29 @@ header nav .nav-sections ul > li > ul > li {
     border: 2px solid currentcolor;
     border-radius: 0 1px 0 0;
     border-width: 2px 2px 0 0;
+  }
+
+  header nav .nav-sections .default-content-wrapper{
+    display:flex;
+    gap: 24px;
+    justify-content: end;
+    align-items: center;
+
+  }
+
+  header nav .nav-sections .default-content-wrapper p:nth-child(2) > a {
+    background: #ea1d22;
+    color: #ffffff;
+    display: block;
+    font-size: 18px;
+    margin-left: 20px;
+    border-radius: 5px;
+    padding: 7px 25px;
+  }
+
+  header nav .nav-sections .default-content-wrapper p:nth-child(2) > a:hover{
+    background:#E49814;
+    text-decoration: none;
   }
 
   header nav .nav-sections .nav-drop[aria-expanded='true']::after {
@@ -224,8 +247,12 @@ header nav .nav-sections ul > li > ul > li {
 
   header nav .nav-sections ul {
     display: flex;
+    align-items: center;
     gap: 24px;
     margin: 0;
+  }
+  header nav .nav-sections ul li p:hover {
+    color: red;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li {
