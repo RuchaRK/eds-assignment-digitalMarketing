@@ -1,3 +1,6 @@
+/* stylelint-disable no-descending-specificity */
+
+/* === Cards Base === */
 .cards > ul {
   list-style: none;
   margin: 0;
@@ -24,4 +27,467 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+}
+
+/* ==============================
+   FEATURES variant — cards (features)
+   4 numbered icon cards in a row
+   ============================== */
+.features-cards .cards > ul {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  counter-reset: feature-counter;
+}
+
+.features-cards .cards > ul > li {
+  border: 1px solid #e8e8e8;
+  border-radius: 0;
+  background: #fff;
+  padding: 10px;
+  min-height: 243px;
+  text-align: center;
+  position: relative;
+  transition: border-color 0.3s ease;
+  counter-increment: feature-counter;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* bottom border animation using ::after */
+.features-cards .cards > ul > li::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent-color, #ea1d22);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.4s ease;
+}
+
+.features-cards .cards > ul > li:hover {
+  border-color: var(--accent-color, #ea1d22);
+  border-style: dashed;
+}
+
+.features-cards .cards > ul > li:hover::after {
+  transform: scaleX(1);
+}
+
+.features-cards .cards > ul > li:hover::before {
+  color: var(--accent-color, #ea1d22);
+}
+
+/* numbered badge (01, 02, 03, 04) — inline next to icon */
+.features-cards .cards > ul > li::before {
+  content: counter(feature-counter, decimal-leading-zero);
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 40px;
+  font-weight: 700;
+  color: rgb(0 0 0 / 8%);
+  transition: color 0.3s ease;
+  font-family: var(--heading-font-family);
+  line-height: 1;
+}
+
+.features-cards .cards .cards-card-image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.features-cards .cards > ul > li img {
+  width: 80px;
+  height: 80px;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.features-cards .cards .cards-card-body {
+  margin: 0;
+}
+
+.features-cards .cards .cards-card-body h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 8px 0;
+}
+
+.features-cards .cards .cards-card-body p {
+  font-size: 14px;
+  color: var(--gray-color);
+  line-height: 1.6;
+}
+
+/* ==============================
+   STATS variant — cards (stats)
+   Red icons with large counter numbers
+   ============================== */
+.cards.stats > ul {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  border: none;
+}
+
+@media (width >= 600px) {
+  .cards.stats > ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.cards.stats > ul > li {
+  border: none;
+  background: transparent;
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cards.stats .cards-card-image {
+  margin-bottom: 12px;
+}
+
+.cards.stats > ul > li img {
+  width: 60px;
+  height: 60px;
+  aspect-ratio: 1;
+  object-fit: contain;
+  filter: invert(18%) sepia(90%) saturate(5500%) hue-rotate(350deg) brightness(90%) contrast(95%);
+}
+
+.cards.stats .cards-card-body {
+  margin: 0;
+}
+
+.cards.stats .cards-card-body p:first-child {
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--accent-color);
+  font-family: var(--heading-font-family);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.cards.stats .cards-card-body p:last-child {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 4px 0 0;
+}
+
+/* ==============================
+   SERVICES variant — cards (services)
+   3x2 grid, gold top border, hover effect
+   ============================== */
+.cards.services > ul {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+@media (width >= 900px) {
+  .cards.services > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.cards.services > ul > li {
+  border: none;
+  border-top: 3px solid var(--gold-color, #d4a843);
+  border-radius: 0;
+  background: #f9f9f9;
+  padding: 40px 24px 30px;
+  text-align: center;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.cards.services > ul > li:hover {
+  background: var(--gold-color, #d4a843);
+  color: #fff;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 15%);
+}
+
+.cards.services .cards-card-image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.cards.services > ul > li img {
+  width: 70px;
+  height: 70px;
+  aspect-ratio: 1;
+  object-fit: contain;
+  filter: invert(18%) sepia(90%) saturate(5500%) hue-rotate(350deg) brightness(90%) contrast(95%);
+  transition: filter 0.4s ease;
+}
+
+.cards.services > ul > li:hover img {
+  filter: brightness(0) invert(1);
+}
+
+.cards.services .cards-card-body {
+  margin: 0;
+}
+
+.cards.services .cards-card-body h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 12px;
+  transition: color 0.4s ease;
+}
+
+.cards.services > ul > li:hover .cards-card-body h2 {
+  color: #fff;
+}
+
+.cards.services .cards-card-body p {
+  font-size: 14px;
+  color: var(--gray-color);
+  line-height: 1.7;
+  transition: color 0.4s ease;
+}
+
+.cards.services > ul > li:hover .cards-card-body p {
+  color: rgb(255 255 255 / 85%);
+}
+
+/* arrow button in services */
+.cards.services .cards-card-body .button-wrapper {
+  margin-top: 20px;
+}
+
+.cards.services .cards-card-body a.button {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 4px;
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==============================
+   PRICING variant — cards (pricing)
+   3 pricing cards with feature lists
+   ============================== */
+.cards.pricing > ul {
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+@media (width >= 600px) {
+  .cards.pricing > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.cards.pricing > ul > li {
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  background: #fff;
+  padding: 40px 30px;
+  text-align: left;
+  transition: box-shadow 0.3s ease;
+}
+
+.cards.pricing > ul > li:hover {
+  box-shadow: 0 10px 40px rgb(0 0 0 / 10%);
+}
+
+.cards.pricing > ul > li img {
+  display: none;
+}
+
+.cards.pricing .cards-card-body {
+  margin: 0;
+}
+
+/* price line: "29 $/Monthly" */
+.cards.pricing .cards-card-body p:first-child {
+  font-size: 16px;
+  color: var(--text-color);
+  margin: 0 0 8px;
+}
+
+.cards.pricing .cards-card-body p:first-child strong,
+.cards.pricing .cards-card-body p:first-child b {
+  font-size: 48px;
+  font-weight: 700;
+  font-family: var(--heading-font-family);
+  color: var(--text-color);
+}
+
+/* plan name: "Basic Plan" */
+.cards.pricing .cards-card-body p:nth-child(2) {
+  display: inline-block;
+  background: var(--accent-color);
+  color: #fff;
+  padding: 8px 24px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 15px;
+  margin: 12px 0 24px;
+}
+
+/* feature list */
+.cards.pricing .cards-card-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+}
+
+.cards.pricing .cards-card-body ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 15px;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cards.pricing .cards-card-body ul li::before {
+  content: '\2192';
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+/* strikethrough items */
+.cards.pricing .cards-card-body ul li del {
+  color: var(--gray-color);
+  text-decoration: line-through;
+}
+
+/* CTA button */
+.cards.pricing .cards-card-body .button-wrapper a.button {
+  border-color: #e0e0e0;
+  background: transparent;
+  color: var(--text-color);
+  padding: 12px 28px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.cards.pricing > ul > li:nth-child(2) .button-wrapper a.button {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #fff;
+}
+
+.cards.pricing .cards-card-body .button-wrapper a.button:hover {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #fff;
+}
+
+/* ==============================
+   TEAM variant — cards (team)
+   Team member cards
+   ============================== */
+.cards.team > ul {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+@media (width >= 900px) {
+  .cards.team > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.cards.team > ul > li {
+  border: none;
+  background: transparent;
+  text-align: center;
+  overflow: hidden;
+}
+
+.cards.team .cards-card-image {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cards.team > ul > li img {
+  aspect-ratio: 3 / 4;
+  transition: transform 0.4s ease;
+}
+
+.cards.team > ul > li:hover img {
+  transform: scale(1.05);
+}
+
+.cards.team .cards-card-body {
+  padding: 16px 0;
+}
+
+.cards.team .cards-card-body p:first-child {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cards.team .cards-card-body p:last-child {
+  font-size: 14px;
+  color: var(--accent-color);
+  margin: 4px 0 0;
+}
+
+/* ==============================
+   BLOG variant — cards (blog)
+   Blog post cards
+   ============================== */
+.cards.blog > ul {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+@media (width >= 900px) {
+  .cards.blog > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.cards.blog > ul > li {
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 15px rgb(0 0 0 / 8%);
+  transition: box-shadow 0.3s ease;
+}
+
+.cards.blog > ul > li:hover {
+  box-shadow: 0 8px 30px rgb(0 0 0 / 15%);
+}
+
+.cards.blog > ul > li img {
+  aspect-ratio: 16 / 10;
+}
+
+.cards.blog .cards-card-body {
+  padding: 20px;
+}
+
+.cards.blog .cards-card-body em {
+  font-size: 13px;
+  color: var(--gray-color);
+  font-style: italic;
+}
+
+.cards.blog .cards-card-body h2,
+.cards.blog .cards-card-body strong {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
 }
