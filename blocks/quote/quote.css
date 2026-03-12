@@ -1,0 +1,61 @@
+/* === Quote / Testimonials (Gradi Style) === */
+.quote blockquote {
+  margin: 0 auto;
+  padding: 30px 24px;
+  max-width: 900px;
+  background: transparent;
+  text-align: center;
+}
+
+@media (width >= 900px) {
+  .quote blockquote {
+    padding: 30px 32px;
+  }
+}
+
+.quote blockquote .quote-quotation {
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgb(255 255 255 / 85%);
+  font-style: italic;
+}
+
+.quote blockquote .quote-quotation > :first-child {
+  text-indent: 0;
+}
+
+.quote blockquote .quote-quotation > :first-child::before {
+  content: "\201C";
+  font-size: 48px;
+  color: var(--accent-color);
+  display: block;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.quote blockquote .quote-quotation > :last-child::after {
+  content: "";
+}
+
+.quote blockquote .quote-attribution {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.quote blockquote .quote-attribution > :first-child::before {
+  content: "";
+  padding-right: 0;
+}
+
+.quote blockquote .quote-attribution p {
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+  margin: 4px 0;
+}
+
+.quote blockquote .quote-attribution p:last-child {
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--accent-color);
+}
