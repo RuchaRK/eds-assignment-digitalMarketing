@@ -1,0 +1,137 @@
+/* stylelint-disable no-descending-specificity */
+
+/* === Tabs Base (Gradi Style) === Vertical layout on desktop: tabs left, content right */
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+@media (width >= 900px) {
+  .tabs {
+    flex-direction: row;
+    gap: 30px;
+  }
+}
+
+/* tab list */
+.tabs .tabs-list {
+  display: flex;
+  gap: 0;
+  max-width: 100%;
+  font-size: var(--body-font-size-xs);
+  overflow-x: auto;
+  flex-flow: row nowrap;
+}
+
+@media (width >= 600px) {
+  .tabs .tabs-list {
+    font-size: var(--body-font-size-s);
+  }
+}
+
+@media (width >= 900px) {
+  .tabs .tabs-list {
+    flex-direction: column;
+    flex: 0 0 240px;
+    font-size: var(--body-font-size-m);
+    overflow-x: visible;
+    gap: 0;
+  }
+}
+
+/* tab buttons */
+.tabs .tabs-list button {
+  flex: 0 0 max-content;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  padding: 14px 20px;
+  background-color: #f5f5f5;
+  color: var(--navy-color, #0d1b3b);
+  font-weight: 700;
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.4;
+  text-align: left;
+  text-overflow: unset;
+  overflow: unset;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+@media (width >= 900px) {
+  .tabs .tabs-list button {
+    flex: unset;
+    white-space: normal;
+    padding: 18px 24px;
+  }
+}
+
+.tabs .tabs-list button p {
+  margin: 0;
+}
+
+.tabs .tabs-list button:hover {
+  background-color: #e8e8e8;
+}
+
+/* active tab */
+.tabs .tabs-list button[aria-selected='true'] {
+  background-color: var(--accent-color);
+  color: #fff;
+  border-bottom: none;
+  cursor: default;
+}
+
+/* tab panel */
+.tabs .tabs-panel {
+  margin-top: 0;
+  padding: 24px;
+  border: none;
+  overflow: auto;
+  flex: 1;
+}
+
+@media (width >= 900px) {
+  .tabs .tabs-panel {
+    padding: 0;
+  }
+}
+
+.tabs .tabs-panel[aria-hidden='true'] {
+  display: none;
+}
+
+/* panel content styling */
+.tabs .tabs-panel h4 {
+  color: var(--accent-color);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 14px;
+  margin-top: 0;
+}
+
+.tabs .tabs-panel h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+@media (width >= 900px) {
+  .tabs .tabs-panel h2 {
+    font-size: 32px;
+  }
+}
+
+.tabs .tabs-panel p {
+  color: var(--gray-color);
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.tabs .tabs-panel a.button {
+  margin-top: 16px;
+}
