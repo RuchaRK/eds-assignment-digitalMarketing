@@ -60,10 +60,7 @@
   color: var(--accent-color);
 }
 
-/* ==============================
-   CUSTOMER-FEEDBACK section
-   Dark bg overlay, centered white content, red stars
-   ============================== */
+
 .customer-feedback {
   position: relative;
   background-size: cover;
@@ -87,7 +84,7 @@
   z-index: 1;
 }
 
-/* section header */
+
 .customer-feedback .default-content-wrapper p strong {
   color: var(--accent-color);
   text-transform: uppercase;
@@ -102,7 +99,7 @@
   margin: 8px 0 40px;
 }
 
-/* replace opening " with 5 red outlined stars */
+
 .customer-feedback .quote-quotation > :first-child::before {
   content: '☆ ☆ ☆ ☆ ☆';
   font-size: 22px;

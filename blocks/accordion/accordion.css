@@ -2,7 +2,7 @@
   border: 1px solid #dadada;
 }
 
-/* stylelint-disable-next-line no-descending-specificity */
+
 .accordion details + details {
   margin-top: 24px;
 }
@@ -60,10 +60,7 @@
   background-color: var(--background-color);
 }
 
-/* ==============================
-   FAQ-SECTION accordion overrides
-   Bottom border only, red on open
-   ============================== */
+
 .faq-section .accordion details {
   border: none;
   border-bottom: 1px solid #e0e0e0;

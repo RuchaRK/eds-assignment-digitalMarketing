@@ -1,6 +1,4 @@
-/* stylelint-disable no-descending-specificity */
 
-/* === Tabs Base (Gradi Style) === Vertical layout on desktop: tabs left, content right */
 .tabs {
   display: flex;
   flex-direction: column;
@@ -136,12 +134,7 @@
   margin-top: 16px;
 }
 
-/* ==============================
-   MARKETING-TABS section
-   Panel splits into content (left) + image (right)
-   ============================== */
 
-/* tab list — prevent stretching to panel height */
 .marketing-tabs .tabs .tabs-list {
   align-self: flex-start;
   gap: 10px;
@@ -154,7 +147,7 @@
   font-style: normal;
 }
 
-/* panel inner: flex row on desktop */
+
 .marketing-tabs .tabs-panel > div {
   display: flex;
   flex-direction: column;
@@ -169,13 +162,13 @@
   }
 }
 
-/* content column */
+
 .marketing-tabs .tabs-panel-content {
   flex: 1;
   min-width: 0;
 }
 
-/* subtitle — first p strong */
+
 .marketing-tabs .tabs-panel-content > p:first-child {
   color: var(--accent-color);
   font-weight: 700;
@@ -188,7 +181,7 @@
   font-size: inherit;
 }
 
-/* heading */
+
 .marketing-tabs .tabs-panel h2 {
   font-size: 24px;
   font-weight: 800;
@@ -202,7 +195,6 @@
   }
 }
 
-/* description text */
 .marketing-tabs .tabs-panel-content > p:not(:first-child) {
   color: var(--gray-color);
   font-size: 15px;
@@ -210,7 +202,7 @@
   margin-bottom: 16px;
 }
 
-/* progress bar */
+
 .marketing-tabs .tabs-progress {
   margin-bottom: 16px;
 }
@@ -249,7 +241,7 @@
   flex-shrink: 0;
 }
 
-/* image column */
+
 .marketing-tabs .tabs-panel-image {
   position: relative;
   flex: 0 0 42%;
@@ -267,7 +259,7 @@
   display: block;
 }
 
-/* image label — red bar at bottom */
+
 .marketing-tabs .tabs-image-label {
   position: absolute;
   bottom: 0;

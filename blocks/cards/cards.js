@@ -1,7 +1,7 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default function decorate(block) {
-  /* change to ul, li */
+ 
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
     const li = document.createElement('li');
@@ -15,7 +15,7 @@ export default function decorate(block) {
   ul.querySelectorAll('picture > img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
   block.replaceChildren(ul);
 
-  // digital-marketing: gallery with hover overlay, nav buttons, red h2 word
+  
   if (block.closest('.digital-marketing')) {
     block.querySelectorAll('.cards-card-body p').forEach((p) => {
       const strong = p.querySelector('strong');
@@ -42,13 +42,13 @@ export default function decorate(block) {
     if (h2) h2.innerHTML = h2.textContent.replace('Marketing', '<em>Marketing</em>');
   }
 
-  // pricing: parse price, extract CTA from last li, red "Package" word
+ 
   if (block.closest('.pricing')) {
     const sectionH2 = block.closest('.pricing').querySelector('.default-content-wrapper h2');
     if (sectionH2) sectionH2.innerHTML = sectionH2.textContent.replace('Package', '<em>Package</em>');
 
     block.querySelectorAll('.cards-card-body').forEach((body) => {
-      // normalise price element → split number from unit
+      
       const priceEl = body.querySelector('p:first-child, h3:first-child');
       if (priceEl) {
         const numMatch = priceEl.textContent.match(/(\d+)/);
@@ -60,7 +60,7 @@ export default function decorate(block) {
         }
       }
 
-      // extract CTA link from last li
+     
       const featureUl = body.querySelector('ul');
       if (featureUl) {
         const lastLi = featureUl.lastElementChild;
@@ -69,11 +69,11 @@ export default function decorate(block) {
           const { href } = link;
           const text = link.textContent.trim();
           lastLi.querySelectorAll('br').forEach((br) => br.remove());
-          // remove the link's outermost wrapper that is a direct child of li
+         
           let wrapper = link;
           while (wrapper.parentElement !== lastLi) wrapper = wrapper.parentElement;
           wrapper.remove();
-          // build button after the list
+          
           const btnWrapper = document.createElement('p');
           btnWrapper.className = 'button-wrapper';
           const btn = document.createElement('a');
@@ -87,7 +87,7 @@ export default function decorate(block) {
     });
   }
 
-  // team-members: split name/role, add social icons, red "Professionals"
+ 
   if (block.closest('.team-members')) {
     const sectionH2 = block.closest('.team-members').querySelector('.default-content-wrapper h2');
     if (sectionH2) sectionH2.innerHTML = sectionH2.textContent.replace('Professionals', '<em>Professionals</em>');
@@ -112,7 +112,7 @@ export default function decorate(block) {
     });
   }
 
-  // marketing-statergy: split "<strong>Title</strong> desc" into h3 + p + arrow button
+  
   if (block.closest('.marketing-statergy')) {
     block.querySelectorAll('.cards-card-body p').forEach((p) => {
       const strong = p.querySelector('strong');

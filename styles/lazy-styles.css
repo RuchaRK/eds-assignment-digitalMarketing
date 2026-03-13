@@ -1,17 +1,13 @@
-/* Gradi Marketing Template - Lazy Styles (loaded post LCP) */
 
-/* Smooth scroll behavior */
 html {
     scroll-behavior: smooth;
   }
   
-  /* Selection color */
   ::selection {
     background: #ea1d22;
     color: #fff;
   }
-  
-  /* Scroll-to-top button */
+
   .scroll-to-top {
     position: fixed;
     bottom: 30px;
@@ -35,10 +31,7 @@ html {
     display: flex;
   }
   
-  /* ==============================
-     Marquee — scrolling text banner
-     Uses default content h2 with ** separators
-     ============================== */
+
   .section.animated-rotating-text {
     background: transparent;
     padding: 10px 0;
@@ -79,10 +72,7 @@ html {
     }
   }
   
-  /* ==============================
-     Contact Info — CTA banner
-     Full-width bg image + dark overlay, centered text, two pill buttons
-     ============================== */
+ 
   .section.contanct-info {
     position: relative;
     background-size: cover;
@@ -136,13 +126,13 @@ html {
     line-height: 1.7;
   }
   
-  /* buttons row — inline side by side */
+ 
   .section.contanct-info .button-wrapper {
     display: inline-block;
     margin: 24px 8px 0;
   }
   
-  /* shared pill shape for both buttons */
+  
   .section.contanct-info a.button {
     border-radius: 30px;
     padding: 14px 36px;
@@ -151,7 +141,7 @@ html {
     white-space: nowrap;
   }
   
-  /* first button — filled red */
+  
   .section.contanct-info a.button.primary {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
@@ -163,7 +153,7 @@ html {
     border-color: var(--link-hover-color);
   }
   
-  /* last button — outlined style */
+
   .section.contanct-info .button-wrapper:last-child a.button {
     background-color: transparent;
     border-color: rgb(255 255 255 / 40%);
@@ -176,10 +166,7 @@ html {
     color: #fff;
   }
   
-  /* ==============================
-     Section spacing — vertical padding per section
-     margin: 0 overrides the base main > .section { margin: 40px 0 }
-     ============================== */
+
   .section.features-cards {
     padding: 60px 0;
     margin: 0;
