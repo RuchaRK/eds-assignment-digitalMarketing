@@ -51,7 +51,7 @@
   color: var(--navy-color, #0d1b3b);
   font-weight: 700;
   font-size: 15px;
-  font-style: italic;
+  font-style: normal;
   line-height: 1.4;
   text-align: left;
   text-overflow: unset;
@@ -134,4 +134,147 @@
 
 .tabs .tabs-panel a.button {
   margin-top: 16px;
+}
+
+/* ==============================
+   MARKETING-TABS section
+   Panel splits into content (left) + image (right)
+   ============================== */
+
+/* tab list — prevent stretching to panel height */
+.marketing-tabs .tabs .tabs-list {
+  align-self: flex-start;
+  gap: 10px;
+}
+
+.marketing-tabs .tabs .tabs-list button {
+  padding: 15px 35px;
+  font-size: 16px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* panel inner: flex row on desktop */
+.marketing-tabs .tabs-panel > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (width >= 900px) {
+  .marketing-tabs .tabs-panel > div {
+    flex-direction: row;
+    gap: 40px;
+    align-items: flex-start;
+  }
+}
+
+/* content column */
+.marketing-tabs .tabs-panel-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* subtitle — first p strong */
+.marketing-tabs .tabs-panel-content > p:first-child {
+  color: var(--accent-color);
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0 0 8px;
+}
+
+.marketing-tabs .tabs-panel-content > p:first-child strong {
+  color: inherit;
+  font-size: inherit;
+}
+
+/* heading */
+.marketing-tabs .tabs-panel h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 16px;
+  color: var(--text-color);
+}
+
+@media (width >= 900px) {
+  .marketing-tabs .tabs-panel h2 {
+    font-size: 28px;
+  }
+}
+
+/* description text */
+.marketing-tabs .tabs-panel-content > p:not(:first-child) {
+  color: var(--gray-color);
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+/* progress bar */
+.marketing-tabs .tabs-progress {
+  margin-bottom: 16px;
+}
+
+.marketing-tabs .tabs-progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 6px;
+}
+
+.marketing-tabs .tabs-progress-pct {
+  color: var(--gold-color, #d4a843);
+  font-weight: 700;
+}
+
+.marketing-tabs .tabs-progress-track {
+  height: 12px;
+  background: transparent;
+  border: 2px solid var(--accent-color);
+  border-radius: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 0 3px;
+}
+
+.marketing-tabs .tabs-progress-fill {
+  height: 6px;
+  background: var(--accent-color);
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+/* image column */
+.marketing-tabs .tabs-panel-image {
+  position: relative;
+  flex: 0 0 42%;
+}
+
+.marketing-tabs .tabs-panel-image picture {
+  display: block;
+  line-height: 0;
+}
+
+.marketing-tabs .tabs-panel-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* image label — red bar at bottom */
+.marketing-tabs .tabs-image-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: var(--accent-color);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 12px 20px;
 }

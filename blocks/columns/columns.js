@@ -13,6 +13,18 @@ export default function decorate(block) {
           picWrapper.classList.add('columns-img-col');
         }
       }
+
+      // convert markdown-style headings (## text) to real <h2> elements
+      col.querySelectorAll('p').forEach((p) => {
+        const text = p.textContent.trim();
+        const match = text.match(/^(#{1,6})\s+(.+)$/);
+        if (match) {
+          const level = match[1].length;
+          const heading = document.createElement(`h${level}`);
+          heading.textContent = match[2];
+          p.replaceWith(heading);
+        }
+      });
     });
   });
 }

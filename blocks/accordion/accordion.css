@@ -59,3 +59,66 @@
   border-top: 1px solid #dadada;
   background-color: var(--background-color);
 }
+
+/* ==============================
+   FAQ-SECTION accordion overrides
+   Bottom border only, red on open
+   ============================== */
+.faq-section .accordion details {
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.faq-section .accordion details + details {
+  margin-top: 0;
+}
+
+.faq-section .accordion details summary {
+  padding: 20px 46px 20px 0;
+  background: none;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.faq-section .accordion details summary p {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+.faq-section .accordion details summary:hover,
+.faq-section .accordion details summary:focus {
+  background: none;
+}
+
+.faq-section .accordion details[open] summary {
+  background: none;
+  color: var(--accent-color);
+}
+
+.faq-section .accordion details[open] {
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.faq-section .accordion details summary::after {
+  border-color: var(--text-color);
+}
+
+.faq-section .accordion details[open] summary::after {
+  border-color: var(--accent-color);
+}
+
+.faq-section .accordion details[open] .accordion-item-body {
+  border-top: none;
+  background: none;
+  padding: 0 0 20px;
+}
+
+.faq-section .accordion .accordion-item-body p {
+  color: var(--gray-color);
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0;
+}

@@ -127,61 +127,82 @@
 }
 
 /* ==============================
-   STATS variant — cards (stats)
-   Red icons with large counter numbers
+   STATS section — cards
+   Icon left, number + label right
    ============================== */
-.cards.stats > ul {
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
+.stats .cards > ul {
+  grid-template-columns: 1fr;
+  gap: 20px;
   border: none;
 }
 
 @media (width >= 600px) {
-  .cards.stats > ul {
+  .stats .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .stats .cards > ul {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-.cards.stats > ul > li {
+.stats .cards > ul > li {
   border: none;
   background: transparent;
-  text-align: center;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
-.cards.stats .cards-card-image {
-  margin-bottom: 12px;
-}
-
-.cards.stats > ul > li img {
-  width: 60px;
-  height: 60px;
+.stats .cards > ul > li img {
+  width: 70px;
+  height: 70px;
   aspect-ratio: 1;
   object-fit: contain;
-  filter: invert(18%) sepia(90%) saturate(5500%) hue-rotate(350deg) brightness(90%) contrast(95%);
 }
 
-.cards.stats .cards-card-body {
+.stats .cards .cards-card-body {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0 16px;
   margin: 0;
 }
 
-.cards.stats .cards-card-body p:first-child {
-  font-size: 42px;
+/* flatten first p so picture + strong become grid items */
+.stats .cards .cards-card-body p:first-child {
+  display: contents;
+}
+
+.stats .cards .cards-card-body p:first-child br {
+  display: none;
+}
+
+/* icon — spans both rows in column 1 */
+.stats .cards .cards-card-body p:first-child picture {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+/* number — row 1 column 2 */
+.stats .cards .cards-card-body p:first-child strong {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: 40px;
   font-weight: 700;
   color: var(--accent-color);
   font-family: var(--heading-font-family);
   line-height: 1.2;
-  margin: 0;
 }
 
-.cards.stats .cards-card-body p:last-child {
+/* label — row 2 column 2 */
+.stats .cards .cards-card-body p:last-child {
+  grid-column: 2;
+  grid-row: 2;
   font-size: 15px;
   font-weight: 600;
   color: var(--text-color);
-  margin: 4px 0 0;
+  margin: 2px 0 0;
 }
 
 /* ==============================
@@ -490,4 +511,534 @@
   font-size: 18px;
   font-weight: 700;
   line-height: 1.4;
+}
+
+/* ==============================
+   MARKETING-STATERGY section — cards
+   3x2 grid, gold top border, centered icon/title/desc + arrow button
+   ============================== */
+
+/* section header */
+.marketing-statergy .default-content-wrapper {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.marketing-statergy .default-content-wrapper p strong {
+  color: var(--accent-color);
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.marketing-statergy .default-content-wrapper h2 {
+  font-size: 36px;
+  font-weight: 800;
+  margin: 8px 0 0;
+}
+
+/* grid */
+.marketing-statergy .cards > ul {
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+@media (width >= 600px) {
+  .marketing-statergy .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .marketing-statergy .cards > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .marketing-statergy .cards > ul > li:nth-child(n+4) {
+    border-bottom: 3px solid var(--gold-color, #d4a843);
+  }
+}
+
+/* card */
+.marketing-statergy .cards > ul > li {
+  border: none;
+  background: #f9f9f9;
+  padding: 40px 24px 30px;
+  text-align: center;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.marketing-statergy .cards > ul > li:hover {
+  background: var(--gold-color, #d4a843);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 15%);
+}
+
+/* icon */
+.marketing-statergy .cards .cards-card-image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.marketing-statergy .cards > ul > li img {
+  width: 80px;
+  height: 80px;
+  aspect-ratio: 1;
+  object-fit: contain;
+  transition: filter 0.4s ease;
+}
+
+.marketing-statergy .cards > ul > li:hover img {
+  filter: brightness(0) invert(1);
+}
+
+/* body */
+.marketing-statergy .cards .cards-card-body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.marketing-statergy .cards .cards-card-body h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 12px;
+  transition: color 0.4s ease;
+}
+
+.marketing-statergy .cards > ul > li:hover .cards-card-body h3 {
+  color: #fff;
+}
+
+.marketing-statergy .cards .cards-card-body p {
+  font-size: 14px;
+  color: var(--gray-color);
+  line-height: 1.7;
+  flex: 1;
+  transition: color 0.4s ease;
+}
+
+.marketing-statergy .cards > ul > li:hover .cards-card-body p {
+  color: rgb(255 255 255 / 85%);
+}
+
+/* arrow button */
+.marketing-statergy .cards .cards-card-body .button-wrapper {
+  margin-top: 20px;
+  flex: 0;
+}
+
+.marketing-statergy .cards .cards-card-body a.button {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 4px;
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.marketing-statergy .cards > ul > li:hover .cards-card-body a.button {
+  background: #fff;
+  border-color: #fff;
+  color: var(--accent-color);
+}
+
+/* ==============================
+   DIGITAL-MARKETING section — gallery
+   4-up image grid, hover overlay + red + button, nav arrows
+   ============================== */
+
+/* section header */
+.digital-marketing .default-content-wrapper {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.digital-marketing .default-content-wrapper p strong {
+  color: var(--accent-color);
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.digital-marketing .default-content-wrapper h2 {
+  font-size: 36px;
+  font-weight: 800;
+  margin: 8px 0 0;
+}
+
+/* section — allow overflow so partial cards are visible */
+.digital-marketing {
+  overflow: visible;
+}
+
+/* cards wrapper — stretch full viewport width */
+.digital-marketing .cards-wrapper {
+  max-width: none;
+  padding: 0;
+  overflow: visible;
+}
+
+.digital-marketing .cards {
+  overflow: visible;
+  position: relative;
+}
+
+/* grid — single row, 5 equal columns with gap */
+.digital-marketing .cards > ul {
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+@media (width < 600px) {
+  .digital-marketing .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+}
+
+/* card */
+.digital-marketing .cards > ul > li {
+  border: none;
+  background: transparent;
+  padding: 0;
+  overflow: visible;
+}
+
+/* image — fills card, portrait ratio */
+.digital-marketing .cards .cards-card-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.digital-marketing .cards > ul > li img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.digital-marketing .cards > ul > li:hover img {
+  transform: scale(1.05);
+}
+
+/* dark overlay on hover */
+.digital-marketing .cards .cards-gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgb(14 14 14 / 50%);
+  display: flex;
+  align-items: end;
+  
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.digital-marketing .cards > ul > li:hover .cards-gallery-overlay {
+  opacity: 1;
+}
+
+/* red + button */
+.digital-marketing .cards .cards-gallery-btn {
+  width: 52px;
+  height: 52px;
+  background: var(--accent-color);
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: background 0.3s ease;
+}
+
+.digital-marketing .cards .cards-gallery-btn:hover {
+  background: var(--link-hover-color);
+}
+
+/* card body */
+.digital-marketing .cards .cards-card-body {
+  padding: 16px 0;
+  text-align: center;
+}
+
+.digital-marketing .cards .cards-card-body h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.digital-marketing .cards .cards-card-body p {
+  font-size: 13px;
+  color: var(--gray-color);
+  margin: 0;
+}
+
+/* ==============================
+   PRICING section — cards
+   3 pricing cards with arrow feature list
+   ============================== */
+
+/* section header */
+.pricing .default-content-wrapper {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.pricing .default-content-wrapper p strong {
+  color: var(--accent-color);
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.pricing .default-content-wrapper h2 {
+  font-size: 40px;
+  font-weight: 800;
+  margin: 8px 0 0;
+}
+
+/* grid */
+.pricing .cards > ul {
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+@media (width >= 600px) {
+  .pricing .cards > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* card */
+.pricing .cards > ul > li {
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  background: #fff;
+  padding: 40px 30px;
+  box-shadow: 0 2px 15px rgb(0 0 0 / 5%);
+  transition: box-shadow 0.3s ease;
+}
+
+.pricing .cards > ul > li:hover {
+  box-shadow: 0 8px 30px rgb(0 0 0 / 10%);
+}
+
+.pricing .cards .cards-card-body {
+  margin: 0;
+}
+
+/* price */
+.pricing .cards .cards-price {
+  margin: 0 0 16px;
+}
+
+.pricing .cards .cards-price-num {
+  font-size: 52px;
+  font-weight: 800;
+  color: var(--text-color);
+  line-height: 1;
+  font-family: var(--heading-font-family);
+}
+
+.pricing .cards .cards-price-unit {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* plan name — red pill badge */
+.pricing .cards .cards-card-body h2 {
+  display: inline-block;
+  background: var(--accent-color);
+  color: #fff;
+  padding: 10px 28px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 24px;
+}
+
+.pricing .cards .cards-card-body h2 strong {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* feature list */
+.pricing .cards .cards-card-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+}
+
+.pricing .cards .cards-card-body ul li {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 15px;
+  color: var(--text-color);
+}
+
+.pricing .cards .cards-card-body ul li::before {
+  content: '→';
+  color: var(--accent-color);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+
+/* strikethrough items */
+.pricing .cards .cards-card-body ul li del {
+  color: var(--gray-color);
+}
+
+/* CTA button — bordered by default */
+.pricing .cards .cards-card-body .button-wrapper a.button {
+  border: 2px solid #e0e0e0;
+  background: transparent;
+  color: var(--text-color);
+  padding: 12px 28px;
+  font-size: 14px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.pricing .cards .cards-card-body .button-wrapper a.button:hover {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #fff;
+}
+
+/* middle card — red filled button */
+.pricing .cards > ul > li:nth-child(2) .button-wrapper a.button {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #fff;
+}
+
+/* ==============================
+   TEAM-MEMBERS section — cards
+   3 team cards, portrait photo, name + role + social icons
+   ============================== */
+
+/* section header */
+.team-members .default-content-wrapper {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.team-members .default-content-wrapper p strong {
+  color: var(--accent-color);
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.team-members .default-content-wrapper h2 {
+  font-size: 36px;
+  font-weight: 800;
+  margin: 8px 0 0;
+}
+
+/* grid — 3 columns */
+.team-members .cards > ul {
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+@media (width >= 600px) {
+  .team-members .cards > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* card — transparent, only image area is gray */
+.team-members .cards > ul > li {
+  border: none;
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
+  text-align: center;
+}
+
+/* photo — gray card with inner padding */
+.team-members .cards .cards-card-image {
+  background: #f0f0f0;
+  border-radius: 12px;
+  padding: 20px 20px 0;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.team-members .cards > ul > li img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  border-radius: 8px 8px 0 0;
+}
+
+/* body — white area below the gray card */
+.team-members .cards .cards-card-body {
+  padding: 20px 16px 8px;
+  margin: 0;
+}
+
+/* name */
+.team-members .cards .cards-card-body h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: var(--text-color);
+}
+
+/* role */
+.team-members .cards .cards-card-body p {
+  font-size: 14px;
+  color: var(--accent-color);
+  margin: 0 0 12px;
+}
+
+/* social icons row */
+.team-members .cards .team-social {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.team-members .cards .team-social a {
+  width: 34px;
+  height: 34px;
+  border: 2px solid var(--gold-color, #d4a843);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-color, #d4a843);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.team-members .cards .team-social a:hover {
+  background: var(--gold-color, #d4a843);
+  color: #fff;
+  text-decoration: none;
 }
