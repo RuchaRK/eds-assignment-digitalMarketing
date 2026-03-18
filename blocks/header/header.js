@@ -108,6 +108,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   }
 }
 
+
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -168,4 +169,25 @@ export default async function decorate(block) {
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+  updateTopNav(block);
+
 }
+
+
+function updateTopNav(topNavElements) {
+  // Scope to nav
+  const nav = topNavElements.querySelector('#nav');
+  if (!nav) return;
+
+  // Find brand wrapper and nav-sections
+  const brandWrapper = nav.querySelector('.section.nav-brand .default-content-wrapper');
+  const navSections = nav.querySelector('.section.nav-sections');
+  if (!brandWrapper || !navSections) return;
+
+  // Move brand wrapper above nav-sections
+  navSections.parentNode.insertBefore(brandWrapper, navSections);
+
+  // Add a helper class for styling
+  brandWrapper.classList.add('topnav-horizontal');
+}
+

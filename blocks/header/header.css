@@ -302,3 +302,13 @@ header nav .nav-tools {
 hr{
   display: none;
 }
+
+.topnav-horizontal p {
+  display: flex;
+  gap: 20px; /* spacing between items */
+  flex-wrap: wrap; /* allow wrapping if screen is narrow */
+}
+
+.topnav-horizontal p br {
+  display: none; /* hide line breaks */
+}
