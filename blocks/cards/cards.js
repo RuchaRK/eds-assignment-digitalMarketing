@@ -1,7 +1,7 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default function decorate(block) {
- 
+  /* change to ul, li */
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
     const li = document.createElement('li');
@@ -15,7 +15,7 @@ export default function decorate(block) {
   ul.querySelectorAll('picture > img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
   block.replaceChildren(ul);
 
-  
+  // digital-marketing
   if (block.closest('.digital-marketing')) {
     block.querySelectorAll('.cards-card-body p').forEach((p) => {
       const strong = p.querySelector('strong');
@@ -40,15 +40,59 @@ export default function decorate(block) {
 
     const h2 = block.closest('.digital-marketing').querySelector('h2');
     if (h2) h2.innerHTML = h2.textContent.replace('Marketing', '<em>Marketing</em>');
+
+    // carousel nav
+    const ul = block.querySelector('ul');
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'cards-carousel-nav cards-carousel-prev';
+    prevBtn.setAttribute('aria-label', 'Previous');
+    prevBtn.innerHTML = '&#10094;';
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'cards-carousel-nav cards-carousel-next';
+    nextBtn.setAttribute('aria-label', 'Next');
+    nextBtn.innerHTML = '&#10095;';
+    block.append(prevBtn, nextBtn);
+
+    // clone items for infinite scroll
+    const items = [...ul.children];
+    items.forEach((item) => ul.append(item.cloneNode(true)));
+    items.forEach((item) => ul.prepend(item.cloneNode(true)));
+
+    // scroll to original set on load
+    requestAnimationFrame(() => {
+      const cardWidth = 424 + 12;
+      ul.scrollLeft = items.length * cardWidth;
+    });
+
+    // infinite loop reset
+    ul.addEventListener('scroll', () => {
+      const cardWidth = 424 + 12;
+      const totalOriginal = items.length * cardWidth;
+      if (ul.scrollLeft <= 0) {
+        ul.style.scrollBehavior = 'auto';
+        ul.scrollLeft += totalOriginal;
+        ul.style.scrollBehavior = '';
+      } else if (ul.scrollLeft >= totalOriginal * 2) {
+        ul.style.scrollBehavior = 'auto';
+        ul.scrollLeft -= totalOriginal;
+        ul.style.scrollBehavior = '';
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      ul.scrollBy({ left: -(424 + 12), behavior: 'smooth' });
+    });
+    nextBtn.addEventListener('click', () => {
+      ul.scrollBy({ left: 424 + 12, behavior: 'smooth' });
+    });
   }
 
- 
+  // pricing
   if (block.closest('.pricing')) {
     const sectionH2 = block.closest('.pricing').querySelector('.default-content-wrapper h2');
     if (sectionH2) sectionH2.innerHTML = sectionH2.textContent.replace('Package', '<em>Package</em>');
 
     block.querySelectorAll('.cards-card-body').forEach((body) => {
-      
       const priceEl = body.querySelector('p:first-child, h3:first-child');
       if (priceEl) {
         const numMatch = priceEl.textContent.match(/(\d+)/);
@@ -60,7 +104,6 @@ export default function decorate(block) {
         }
       }
 
-     
       const featureUl = body.querySelector('ul');
       if (featureUl) {
         const lastLi = featureUl.lastElementChild;
@@ -69,11 +112,9 @@ export default function decorate(block) {
           const { href } = link;
           const text = link.textContent.trim();
           lastLi.querySelectorAll('br').forEach((br) => br.remove());
-         
           let wrapper = link;
           while (wrapper.parentElement !== lastLi) wrapper = wrapper.parentElement;
           wrapper.remove();
-          
           const btnWrapper = document.createElement('p');
           btnWrapper.className = 'button-wrapper';
           const btn = document.createElement('a');
@@ -87,7 +128,7 @@ export default function decorate(block) {
     });
   }
 
- 
+  // team-members
   if (block.closest('.team-members')) {
     const sectionH2 = block.closest('.team-members').querySelector('.default-content-wrapper h2');
     if (sectionH2) sectionH2.innerHTML = sectionH2.textContent.replace('Professionals', '<em>Professionals</em>');
@@ -112,7 +153,72 @@ export default function decorate(block) {
     });
   }
 
-  
+  // company-cards – infinite auto-scrolling logo carousel
+  if (block.closest('.company-cards')) {
+    const logoUl = block.querySelector('ul');
+    const logoItems = [...logoUl.children];
+    const logoWidth = 220;
+    const logoGap = 40;
+    const logoStep = logoWidth + logoGap;
+
+    // clone items for seamless loop
+    logoItems.forEach((item) => logoUl.append(item.cloneNode(true)));
+    logoItems.forEach((item) => logoUl.append(item.cloneNode(true)));
+    logoItems.forEach((item) => logoUl.prepend(item.cloneNode(true)));
+
+    // start in the middle set
+    requestAnimationFrame(() => {
+      logoUl.style.scrollBehavior = 'auto';
+      logoUl.scrollLeft = logoItems.length * logoStep;
+      logoUl.style.scrollBehavior = '';
+    });
+
+    // infinite loop reset
+    logoUl.addEventListener('scroll', () => {
+      const total = logoItems.length * logoStep;
+      if (logoUl.scrollLeft <= 0) {
+        logoUl.style.scrollBehavior = 'auto';
+        logoUl.scrollLeft += total;
+        logoUl.style.scrollBehavior = '';
+      } else if (logoUl.scrollLeft >= total * 2) {
+        logoUl.style.scrollBehavior = 'auto';
+        logoUl.scrollLeft -= total;
+        logoUl.style.scrollBehavior = '';
+      }
+    });
+
+    // nav buttons
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'company-carousel-nav company-carousel-prev';
+    prevBtn.setAttribute('aria-label', 'Previous');
+    prevBtn.innerHTML = '&#10094;';
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'company-carousel-nav company-carousel-next';
+    nextBtn.setAttribute('aria-label', 'Next');
+    nextBtn.innerHTML = '&#10095;';
+    block.append(prevBtn, nextBtn);
+
+    prevBtn.addEventListener('click', () => {
+      logoUl.scrollBy({ left: -logoStep, behavior: 'smooth' });
+    });
+    nextBtn.addEventListener('click', () => {
+      logoUl.scrollBy({ left: logoStep, behavior: 'smooth' });
+    });
+
+    // auto-scroll
+    let autoScroll = setInterval(() => {
+      logoUl.scrollBy({ left: logoStep, behavior: 'smooth' });
+    }, 2500);
+
+    block.addEventListener('mouseenter', () => clearInterval(autoScroll));
+    block.addEventListener('mouseleave', () => {
+      autoScroll = setInterval(() => {
+        logoUl.scrollBy({ left: logoStep, behavior: 'smooth' });
+      }, 2500);
+    });
+  }
+
+  // marketing-statergy
   if (block.closest('.marketing-statergy')) {
     block.querySelectorAll('.cards-card-body p').forEach((p) => {
       const strong = p.querySelector('strong');

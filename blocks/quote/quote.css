@@ -1,8 +1,8 @@
-/* === Quote / Testimonials (Gradi Style) === */
+/* quote */
 .quote blockquote {
   margin: 0 auto;
   padding: 30px 24px;
-  max-width: 900px;
+  max-width: 1200px;
   background: transparent;
   text-align: center;
 }
@@ -60,52 +60,3 @@
   color: var(--accent-color);
 }
 
-
-.customer-feedback {
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  color: #fff;
-  margin: 0;
-  padding: 75px 0;
-  text-align: center;
-}
-
-.customer-feedback::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgb(14 14 14 / 75%);
-  z-index: 0;
-}
-
-.customer-feedback > div {
-  position: relative;
-  z-index: 1;
-}
-
-
-.customer-feedback .default-content-wrapper p strong {
-  color: var(--accent-color);
-  text-transform: uppercase;
-  font-size: 14px;
-  letter-spacing: 1px;
-}
-
-.customer-feedback .default-content-wrapper h2 {
-  color: #fff;
-  font-size: 36px;
-  font-weight: 800;
-  margin: 8px 0 40px;
-}
-
-
-.customer-feedback .quote-quotation > :first-child::before {
-  content: '☆ ☆ ☆ ☆ ☆';
-  font-size: 22px;
-  color: var(--accent-color);
-  letter-spacing: 4px;
-  display: block;
-  margin-bottom: 24px;
-  font-style: normal;
-}

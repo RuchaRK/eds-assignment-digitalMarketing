@@ -1,29 +1,243 @@
+/* stylelint-disable no-descending-specificity */
+
 footer {
-  background-color: #454545;
+  position: relative;
+  background-color: var(--dark-color);
+  background-image: url('/media_19bd266fe5a4f608b932d25fc79cc0ffd7b04ec0a.jpg?width=2000&format=webply&optimize=medium');
+  background-size: cover;
+  background-position: center;
+  color: rgb(255 255 255 / 70%);
   font-size: var(--body-font-size-xs);
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgb(14 14 14 / 85%);
+  z-index: 0;
+}
+
+footer .footer {
+  position: relative;
+  z-index: 1;
 }
 
 footer .footer > div {
   margin: auto;
   max-width: 1200px;
-  padding: 40px 24px 24px;
-}
-
-footer .footer p {
-  margin: 0;
+  padding: 60px 24px 24px;
 }
 
 @media (width >= 900px) {
   footer .footer > div {
-    padding: 40px 32px 24px;
+    padding: 60px 32px 24px;
   }
 }
 
+footer .footer p {
+  margin: 0 0 10px;
+  line-height: 1.8;
+}
 
-.footer .cards > ul > li
-{
+footer .footer a:any-link {
+  color: rgb(255 255 255 / 70%);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer .footer a:hover {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+/* ---- reset base cards image styles ---- */
+footer .footer .cards > ul > li img {
+  width: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+/* ---- cards grid (4 columns) ---- */
+footer .footer .cards > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+@media (width >= 600px) {
+  footer .footer .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  footer .footer .cards > ul {
+    grid-template-columns: 1.3fr 1fr 1fr 1.2fr;
+  }
+}
+
+footer .footer .cards > ul > li {
   border: none;
-  background-image: url();
-  background: #454545;
-  color:white;
+  background: transparent;
+}
+
+footer .footer .cards .cards-card-body {
+  margin: 0;
+}
+
+/* ---- column 1: logo + description + social ---- */
+footer .footer .cards > ul > li:first-child picture {
+  display: block;
+  margin-bottom: 16px;
+}
+
+footer .footer .cards > ul > li:first-child img {
+  width: 150px;
+  height: auto;
+  display: block;
+}
+
+footer .footer .cards > ul > li:first-child > .cards-card-body > p:first-child {
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+
+footer .footer .cards > ul > li:first-child > .cards-card-body > p:first-child br {
+  display: block;
+  content: '';
+  margin-top: 16px;
+}
+
+/* social icons row */
+footer .footer .cards > ul > li:first-child > .cards-card-body > p:not(:first-child) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 4px;
+  background: rgb(255 255 255 / 15%);
+  color: #fff;
+  font-size: 0;
+  margin: 0 4px 0 0;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  vertical-align: top;
+}
+
+footer .footer .cards > ul > li:first-child > .cards-card-body > p:not(:first-child)::before {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* social icon letters */
+footer .footer .cards > ul > li:first-child > .cards-card-body > p:nth-child(2)::before {
+  content: 'f';
+}
+
+footer .footer .cards > ul > li:first-child > .cards-card-body > p:nth-child(3)::before {
+  content: 'g+';
+  font-size: 12px;
+}
+
+footer .footer .cards > ul > li:first-child > .cards-card-body > p:nth-child(4)::before {
+  content: '𝕏';
+}
+
+footer .footer .cards > ul > li:first-child > .cards-card-body > p:nth-child(5)::before {
+  content: 'p';
+}
+
+footer .footer .cards > ul > li:first-child > .cards-card-body > p:not(:first-child):hover {
+  background: var(--accent-color);
+}
+
+/* ---- column titles (Important Link, Quick Contact, Recent Posts) ---- */
+footer .footer .cards .cards-card-body > p:first-child strong {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  display: block;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+footer .footer .cards .cards-card-body > p:first-child strong::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, transparent, var(--accent-color) 15%, var(--accent-color) 85%, transparent);
+}
+
+footer .footer .cards .cards-card-body > p:first-child u {
+  text-decoration: none;
+}
+
+/* ---- lists ---- */
+footer .footer .cards .cards-card-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer .footer .cards .cards-card-body ul li {
+  padding: 8px 0;
+  border-bottom: none;
+  color: rgb(255 255 255 / 70%);
+  font-size: 14px;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+footer .footer .cards .cards-card-body ul li:hover {
+  color: var(--accent-color);
+}
+
+
+/* ---- column 3: Quick Contact with icons ---- */
+footer .footer .cards > ul > li:nth-child(3) .cards-card-body ul li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+footer .footer .cards > ul > li:nth-child(3) .cards-card-body ul li p {
+  margin: 0;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+footer .footer .cards > ul > li:nth-child(3) .cards-card-body ul li picture {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+footer .footer .cards > ul > li:nth-child(3) .cards-card-body ul li img {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+  vertical-align: middle;
+}
+
+/* ---- copyright bar ---- */
+footer .footer .default-content-wrapper {
+  border-top: 1px solid rgb(255 255 255 / 15%);
+  padding-top: 20px;
+  margin-top: 40px;
+  font-size: 13px;
+}
+
+footer .footer .default-content-wrapper p {
+  margin: 0;
 }

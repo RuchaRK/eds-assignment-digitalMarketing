@@ -1,4 +1,6 @@
+/* stylelint-disable no-descending-specificity */
 
+/* tabs-base */
 .tabs {
   display: flex;
   flex-direction: column;
@@ -12,7 +14,7 @@
   }
 }
 
-/* tab list */
+/* tabs-list */
 .tabs .tabs-list {
   display: flex;
   gap: 0;
@@ -38,7 +40,7 @@
   }
 }
 
-/* tab buttons */
+/* tab-buttons */
 .tabs .tabs-list button {
   flex: 0 0 max-content;
   margin: 0;
@@ -75,7 +77,7 @@
   background-color: #e8e8e8;
 }
 
-/* active tab */
+/* active-tab */
 .tabs .tabs-list button[aria-selected='true'] {
   background-color: var(--accent-color);
   color: #fff;
@@ -83,7 +85,7 @@
   cursor: default;
 }
 
-/* tab panel */
+/* tabs-panel */
 .tabs .tabs-panel {
   margin-top: 0;
   padding: 24px;
@@ -102,7 +104,6 @@
   display: none;
 }
 
-/* panel content styling */
 .tabs .tabs-panel h4 {
   color: var(--accent-color);
   text-transform: uppercase;
@@ -134,7 +135,7 @@
   margin-top: 16px;
 }
 
-
+/* marketing-tabs */
 .marketing-tabs .tabs .tabs-list {
   align-self: flex-start;
   gap: 10px;
@@ -145,13 +146,14 @@
   font-size: 16px;
   font-weight: 700;
   font-style: normal;
+  height: 94px;
 }
-
 
 .marketing-tabs .tabs-panel > div {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  height: 100%;
 }
 
 @media (width >= 900px) {
@@ -162,12 +164,11 @@
   }
 }
 
-
+/* tabs-panel-content */
 .marketing-tabs .tabs-panel-content {
   flex: 1;
   min-width: 0;
 }
-
 
 .marketing-tabs .tabs-panel-content > p:first-child {
   color: var(--accent-color);
@@ -180,7 +181,6 @@
   color: inherit;
   font-size: inherit;
 }
-
 
 .marketing-tabs .tabs-panel h2 {
   font-size: 24px;
@@ -202,7 +202,7 @@
   margin-bottom: 16px;
 }
 
-
+/* tabs-progress */
 .marketing-tabs .tabs-progress {
   margin-bottom: 16px;
 }
@@ -241,25 +241,27 @@
   flex-shrink: 0;
 }
 
-
+/* tabs-panel-image */
 .marketing-tabs .tabs-panel-image {
   position: relative;
   flex: 0 0 42%;
+  align-self: stretch;
 }
 
 .marketing-tabs .tabs-panel-image picture {
   display: block;
   line-height: 0;
+  height: 100%;
 }
 
 .marketing-tabs .tabs-panel-image img {
-  width: 100%;
+  width: 415px;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-
+/* tabs-image-label */
 .marketing-tabs .tabs-image-label {
   position: absolute;
   bottom: 0;

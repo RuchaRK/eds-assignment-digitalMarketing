@@ -7,16 +7,16 @@ const isDesktop = window.matchMedia('(min-width: 900px)');
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
-    const navSections = nav.querySelector('.nav-sections');
-    if (!navSections) return;
-    const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
-    if (navSectionExpanded && isDesktop.matches) {
+    const navTools = nav.querySelector('.nav-tools');
+    if (!navTools) return;
+    const navDropExpanded = navTools.querySelector('[aria-expanded="true"]');
+    if (navDropExpanded && isDesktop.matches) {
       // eslint-disable-next-line no-use-before-define
-      toggleAllNavSections(navSections);
-      navSectionExpanded.focus();
+      toggleAllNavSections(navTools);
+      navDropExpanded.focus();
     } else if (!isDesktop.matches) {
       // eslint-disable-next-line no-use-before-define
-      toggleMenu(nav, navSections);
+      toggleMenu(nav, navTools);
       nav.querySelector('button').focus();
     }
   }
@@ -25,15 +25,15 @@ function closeOnEscape(e) {
 function closeOnFocusLost(e) {
   const nav = e.currentTarget;
   if (!nav.contains(e.relatedTarget)) {
-    const navSections = nav.querySelector('.nav-sections');
-    if (!navSections) return;
-    const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
-    if (navSectionExpanded && isDesktop.matches) {
+    const navTools = nav.querySelector('.nav-tools');
+    if (!navTools) return;
+    const navDropExpanded = navTools.querySelector('[aria-expanded="true"]');
+    if (navDropExpanded && isDesktop.matches) {
       // eslint-disable-next-line no-use-before-define
-      toggleAllNavSections(navSections, false);
+      toggleAllNavSections(navTools, false);
     } else if (!isDesktop.matches) {
       // eslint-disable-next-line no-use-before-define
-      toggleMenu(nav, navSections, false);
+      toggleMenu(nav, navTools, false);
     }
   }
 }
@@ -44,7 +44,7 @@ function openOnKeydown(e) {
   if (isNavDrop && (e.code === 'Enter' || e.code === 'Space')) {
     const dropExpanded = focused.getAttribute('aria-expanded') === 'true';
     // eslint-disable-next-line no-use-before-define
-    toggleAllNavSections(focused.closest('.nav-sections'));
+    toggleAllNavSections(focused.closest('.nav-tools'));
     focused.setAttribute('aria-expanded', dropExpanded ? 'false' : 'true');
   }
 }
@@ -60,7 +60,7 @@ function focusNavSection() {
  */
 function toggleAllNavSections(sections, expanded = false) {
   if (!sections) return;
-  sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
+  sections.querySelectorAll('.default-content-wrapper > ul > li').forEach((section) => {
     section.setAttribute('aria-expanded', expanded);
   });
 }
@@ -108,7 +108,6 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   }
 }
 
-
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -131,25 +130,19 @@ export default async function decorate(block) {
     if (section) section.classList.add(`nav-${c}`);
   });
 
-  const navBrand = nav.querySelector('.nav-brand');
-  const brandLink = navBrand.querySelector('.button');
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
-  }
-
-  const navSections = nav.querySelector('.nav-sections');
-  if (navSections) {
-    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-      navSection.addEventListener('click', () => {
+  const navTools = nav.querySelector('.nav-tools');
+  if (navTools) {
+    navTools.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navItem) => {
+      if (navItem.querySelector('ul')) navItem.classList.add('nav-drop');
+      navItem.addEventListener('click', () => {
         if (isDesktop.matches) {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          const expanded = navItem.getAttribute('aria-expanded') === 'true';
+          toggleAllNavSections(navTools);
+          navItem.setAttribute('aria-expanded', expanded ? 'false' : 'true');
         }
       });
     });
+
   }
 
   // hamburger for mobile
@@ -158,36 +151,20 @@ export default async function decorate(block) {
   hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
       <span class="nav-hamburger-icon"></span>
     </button>`;
-  hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
+  hamburger.addEventListener('click', () => toggleMenu(nav, navTools));
   nav.prepend(hamburger);
   nav.setAttribute('aria-expanded', 'false');
   // prevent mobile nav behavior on window resize
-  toggleMenu(nav, navSections, isDesktop.matches);
-  isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+  toggleMenu(nav, navTools, isDesktop.matches);
+  isDesktop.addEventListener('change', () => toggleMenu(nav, navTools, isDesktop.matches));
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
-  updateTopNav(block);
 
+  // on scroll: hide top bar, make nav background transparent
+  window.addEventListener('scroll', () => {
+    navWrapper.classList.toggle('nav-scrolled', window.scrollY > 50);
+  });
 }
-
-
-function updateTopNav(topNavElements) {
-  // Scope to nav
-  const nav = topNavElements.querySelector('#nav');
-  if (!nav) return;
-
-  // Find brand wrapper and nav-sections
-  const brandWrapper = nav.querySelector('.section.nav-brand .default-content-wrapper');
-  const navSections = nav.querySelector('.section.nav-sections');
-  if (!brandWrapper || !navSections) return;
-
-  // Move brand wrapper above nav-sections
-  navSections.parentNode.insertBefore(brandWrapper, navSections);
-
-  // Add a helper class for styling
-  brandWrapper.classList.add('topnav-horizontal');
-}
-
